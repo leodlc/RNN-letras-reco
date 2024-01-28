@@ -95,18 +95,6 @@
             return;
         }
 
-        ctx1.save();
-
-        // Invertir horizontalmente el dibujo en el canvas
-        ctx1.translate(canvas.width, 0);
-        ctx1.scale(-1, 1);
-
-        // Rotar el dibujo 270 grados en sentido horario (equivalente a 3 vueltas hacia la derecha)
-        ctx1.rotate(3 * Math.PI / 2);
-
-        // Restaurar el estado anterior del contexto
-        ctx1.restore();
-
         // Pasar canvas a versión 28x28
         resample_single(canvas, 28, 28, smallcanvas);
         // Guardar el estado actual del contexto
@@ -144,7 +132,7 @@
         const letraPredicha = String.fromCharCode(65 + mayorIndice); // Asociar el índice a la letra A-Z
         const probabilidadPrediccion = prediction[mayorIndice];
         console.log("Predicción", letraPredicha);
-        document.getElementById("resultado").innerHTML = letraPredicha;
+        document.getElementById("resultado").innerHTML = letraPredicha.toLowerCase();
         
         // Imprimir probabilidades de cada clase
         console.log("Probabilidades de cada clase:", prediction);
@@ -155,6 +143,7 @@
     
 
     function resample_single(canvas, width, height, resize_canvas) {
+      
     var width_source = canvas.width;
     var height_source = canvas.height;
     width = Math.round(width);
